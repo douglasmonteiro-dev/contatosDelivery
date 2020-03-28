@@ -1,0 +1,43 @@
+<mat-form-field>
+    <mat-label>Procurar</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Nome do lugar ou Região">
+  </mat-form-field>
+  
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+  
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nome </th>
+        <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+      </ng-container>
+  
+      <!-- Regiao Column -->
+      <ng-container matColumnDef="regiao">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Regiao </th>
+        <td mat-cell *matCellDef="let row" [style.regiao]="row.regiao"> {{row.regiao}} </td>
+      </ng-container>
+
+      <!-- Whatsapp Column -->
+      <ng-container matColumnDef="telefone">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Whatsapp </th>
+        <td mat-cell *matCellDef="let row"> 
+            {{row.telefone}} 
+            <a href="https://api.whatsapp.com/send?phone=5511984560878"><mat-icon class="icon" aria-hidden="false" aria-label="Pesquisar">send</mat-icon></a>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+      </tr>
+    </table>
+  
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+  
