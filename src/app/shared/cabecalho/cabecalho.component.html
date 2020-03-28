@@ -1,11 +1,12 @@
 <header>
     <mat-toolbar>
         <mat-toolbar-row>
-            <a [routerLink]="['']">
-                <h1>CATÁLOGO DE DELIVERY</h1>
+            <a class="linkTitulo" [routerLink]="['']">
+                <h1>CONTATOS DELIVERY</h1>
               </a>
-            <!-- <span class="spacer"></span>
-            <form class="form-inline">
+            <span class="spacer"></span>
+            <ng-content></ng-content>
+            <!-- <form class="form-inline">
                 <button mat-icon-button aria-label="Clique para Pesquisar" (click)="toggleSearch()" *ngIf="!showSearchInput">
                     <mat-icon class="icon" aria-hidden="false" aria-label="Pesquisar">search</mat-icon>
                 </button>

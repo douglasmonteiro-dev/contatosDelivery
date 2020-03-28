@@ -10,4 +10,10 @@ table {
   td, th {
     width: 25%;
   }
-  
+  .example-row-detail {
+    overflow: hidden;
+    display: flex;
+  }
+  tr.example-detail-row {
+    height: 0;
+  }

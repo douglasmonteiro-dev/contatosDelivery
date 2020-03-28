@@ -4,7 +4,7 @@
   </mat-form-field>
   
   <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource" matSort>
+    <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows>
   
       <!-- ID Column -->
       <ng-container matColumnDef="id">
@@ -33,9 +33,32 @@
         </td>
       </ng-container>
   
+      <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+      <ng-container matColumnDef="expandedDetail">
+        <td mat-cell *matCellDef="let row" [attr.colspan]="displayedColumns.length">
+          <div class="example-row-detail"
+              [@detailExpand]="row == expandedElement ? 'expanded' : 'collapsed'">
+            <!-- <div class="example-row-diagram">
+              <div class="example-row-position"> {{row.position}} </div>
+              <div class="example-row-symbol"> {{row.symbol}} </div>
+              <div class="example-row-name"> {{row.name}} </div>
+              <div class="example-row-weight"> {{row.weight}} </div>
+            </div> -->
+            <div class="example-row-description">
+              {{row.description}}
+              <span class="example-row-description-attribution"> -- Wikipedia </span>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+          [class.example-expanded-row]="expandedElement === row"
+          (click)="expandedElement = expandedElement === row ? null : row">
       </tr>
+      <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+
     </table>
   
     <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
