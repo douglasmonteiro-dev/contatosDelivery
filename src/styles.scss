@@ -6,3 +6,9 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif; 
     background-color: rgb(66, 66, 66);
 }
+mat-ink-bar {
+    visibility: unset !important;
+}
+mat-form-field {
+    margin: 5px;
+}

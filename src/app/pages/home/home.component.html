@@ -1,4 +1,5 @@
-<mat-form-field>
+<app-menu>
+  <mat-form-field>
     <mat-label>Procurar</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Nome do lugar ou Região">
   </mat-form-field>
@@ -13,9 +14,9 @@
       </ng-container>
   
       <!-- Name Column -->
-      <ng-container matColumnDef="name">
+      <ng-container matColumnDef="nome">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Nome </th>
-        <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.nome}} </td>
       </ng-container>
   
       <!-- Regiao Column -->
@@ -28,9 +29,15 @@
       <ng-container matColumnDef="telefone">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Whatsapp </th>
         <td mat-cell *matCellDef="let row"> 
-            {{row.telefone}} 
-            <a href="https://api.whatsapp.com/send?phone=5511984560878"><mat-icon class="icon" aria-hidden="false" aria-label="Pesquisar">send</mat-icon></a>
+            {{row.celular}} 
+            <a href="https://api.whatsapp.com/send?phone={{row.celular}}"><mat-icon class="icon" aria-hidden="false" aria-label="Pesquisar">send</mat-icon></a>
         </td>
+      </ng-container>
+
+      <!-- Servico Column -->
+      <ng-container matColumnDef="servico">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Serviço </th>
+        <td mat-cell *matCellDef="let row" [style.regiao]="row.servico"> {{row.servico}} </td>
       </ng-container>
   
       <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
@@ -64,3 +71,5 @@
     <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
   </div>
   
+
+</app-menu>

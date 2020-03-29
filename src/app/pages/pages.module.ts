@@ -46,6 +46,8 @@ import { AgendaComponent } from './agenda/agenda.component';
 import { ServicosComponent } from './servicos/servicos.component';
 import { AbrirAgendaComponent } from './abrir-agenda/abrir-agenda.component';
 import { RouterModule } from '@angular/router';
+import { DadosClienteComponent } from './dados-cliente/dados-cliente.component';
+import { EstabelecimentoComponent } from './estabelecimento/estabelecimento.component';
 
 registerLocaleData(ptBr);
 
@@ -66,7 +68,9 @@ registerLocaleData(ptBr);
     ForgotPasswordComponent,
     AgendaComponent,
     ServicosComponent,
-    AbrirAgendaComponent
+    AbrirAgendaComponent,
+    DadosClienteComponent,
+    EstabelecimentoComponent
   ],
   imports: [
     CommonModule,

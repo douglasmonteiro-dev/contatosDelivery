@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserComponent } from '../user/user.component';
 
 @Component({
   selector: 'app-cabecalho',
@@ -10,7 +11,10 @@ export class CabecalhoComponent implements OnInit {
   showSearchInput: boolean;
 
   
-  constructor() { }
+  user: UserComponent;
+  constructor() {
+    this.user = new UserComponent;
+   }
 
   ngOnInit(): void {
   }

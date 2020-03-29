@@ -3,9 +3,22 @@
   padding: 0 14px;
 }
 
-.spacer {
-  flex: 1 1 auto;
-}
 .linkTitulo {
   text-decoration: none;
+}
+mat-toolbar-row {
+  position: sticky;
+  position: -webkit-sticky; /* For macOS/iOS Safari */
+  top: 0; /* Sets the sticky toolbar to be on top */
+  z-index: 1000; 
+  display: flex;
+  justify-content: space-between;
+  background: #9c27b0;
+}
+.mat-menu-item {
+  justify-content: start;
+  align-items: center
+}
+h1 {
+  color: #ffffff;
 }

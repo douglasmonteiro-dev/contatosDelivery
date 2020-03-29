@@ -9,6 +9,8 @@ import { AgendamentoComponent } from './pages/agendamento/agendamento.component'
 import { RegisterComponent } from './pages/register/register.component';
 import { ServicosComponent } from './pages/servicos/servicos.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
+import { DadosClienteComponent } from './pages/dados-cliente/dados-cliente.component';
+import { EstabelecimentoComponent } from './pages/estabelecimento/estabelecimento.component';
 
 
 const routes: Routes = [
@@ -16,6 +18,8 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent, pathMatch: 'full'},
   {path: 'forgot-password/:token', component: ForgotPasswordComponent},
   {path: 'servicos', component: ServicosComponent},
+  {path: 'cliente', component: DadosClienteComponent},
+  {path: 'estabelecimentos', component: EstabelecimentoComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'agendamento', component: AgendamentoComponent},
   {path: 'abrir-agenda', component: AbrirAgendaComponent},

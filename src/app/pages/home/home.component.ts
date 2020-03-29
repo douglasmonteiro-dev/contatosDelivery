@@ -3,6 +3,8 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import { Estabelecimento } from 'src/app/models/Estabelecimento';
+import { EstabelecimentoService } from 'src/app/services/estabelecimento.service';
 
 
 export interface UserData {
@@ -35,22 +37,28 @@ const NAMES: string[] = [
   ]
 })
 export class HomeComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'regiao', 'telefone', ];
-  dataSource: MatTableDataSource<UserData>;
+      
+  displayedColumns: string[] = ['nome', 'regiao', 'telefone', 'servico' ];
+  dataSource: MatTableDataSource<Estabelecimento>;
   expandedElement: UserData | null;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor() {
+  constructor(private estabelecimentoService: EstabelecimentoService) {
     // Create 100 users
+    this.estabelecimentoService.listar()
+    .subscribe((resposta: any) => {
+      this.dataSource = new MatTableDataSource(resposta.estabelecimentos);
+
+    });
     const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
 
     // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
   }
 
   ngOnInit() {
+    
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }

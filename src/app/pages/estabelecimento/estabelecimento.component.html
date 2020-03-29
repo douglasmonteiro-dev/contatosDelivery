@@ -1,0 +1,83 @@
+<app-menu>
+    <div class="main">
+        <mat-form-field class="col-12 mt-5 mb-3">
+            <input matInput placeholder="Estabelecimento" [(ngModel)]="busca" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let estabelecimentoOption of estabelecimentos" [value]="estabelecimentoOption.name" (click)="selecionaEstabelecimento(estabelecimentoOption)">
+                {{estabelecimentoOption.name}}
+              </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+   
+      
+      <mat-tab-group>
+          <mat-tab label="Dados do Estabelecimento">
+              <form class="container mt-4">
+                  <mat-form-field *ngIf="true" class="col-12">
+                    <input matInput placeholder="Nome" [(ngModel)]="estabelecimento.dadosEstabelecimento.nome" name="nome">
+                  </mat-form-field>
+                
+                  <mat-form-field *ngIf="true" class="col-6">
+                    <input matInput type="tel" placeholder="Telefone" [(ngModel)]="estabelecimento.dadosEstabelecimento.telefone" name="telefone"> 
+                  </mat-form-field>
+                
+                  <mat-form-field *ngIf="true" class="col-6">
+                    <input matInput type="tel" placeholder="Whatsapp" [(ngModel)]="estabelecimento.dadosEstabelecimento.celular" name="celular">
+                  </mat-form-field>
+                
+                
+                
+                </form>
+          </mat-tab>
+          <mat-tab label="Endereço">
+              <form class="container mt-4">
+                  <mat-form-field *ngIf="true" class="col-10">
+                    <input matInput placeholder="Endereço" [(ngModel)]="estabelecimento.dadosEstabelecimento.endereco" name="endereco">
+                  </mat-form-field>
+                
+                  <mat-form-field *ngIf="true" class="col-12">
+                    <input matInput placeholder="Região" [(ngModel)]="estabelecimento.dadosEstabelecimento.regiao" name="regiao">
+                  </mat-form-field>
+              
+                  <button class="col-2" mat-raised-button color="primary" (click)="pesquisarEndereco()">Pequisar</button>
+                
+                </form>
+                <agm-map [latitude]="lat" [zoom]="zoom" [longitude]="lng">
+                  <agm-marker  [latitude]="lat" [longitude]="lng"></agm-marker>
+                </agm-map>
+            
+          </mat-tab>
+          <mat-tab label="Dados de Entrega">
+              <form class="container mt-4">
+                  
+                <mat-form-field *ngIf="true" class="col-6">
+                    <input matInput placeholder="Ifood" [(ngModel)]="estabelecimento.dadosEstabelecimento.ifood" name="ifood">
+                  </mat-form-field>
+                
+                  <mat-form-field *ngIf="true" class="col-6">
+                    <input matInput placeholder="Horarios" [(ngModel)]="estabelecimento.dadosEstabelecimento.horarios" name="horarios">
+                  </mat-form-field>
+                
+                  <mat-form-field *ngIf="true" class="col-6">
+                    <input matInput placeholder="Raio De Entrega (em Km)" [(ngModel)]="estabelecimento.dadosEstabelecimento.raioDeEntrega" name="raioDeEntrega">
+                  </mat-form-field>
+                
+                  <mat-form-field *ngIf="true" class="col-6">
+                    <input matInput placeholder="Serviço" [(ngModel)]="estabelecimento.dadosEstabelecimento.servico" name="servico">
+                  </mat-form-field>
+                
+                
+                
+                </form>
+          </mat-tab>
+          
+      </mat-tab-group>
+  
+      <div class="d-flex justify-content-center">
+          <button class="col-2 mr-5" mat-raised-button color="primary" (click)="adicionar()" *ngIf="estabelecimento">Novo</button>
+          <button class="col-2 mr-5" mat-raised-button color="secondary" (click)="atualizar()" *ngIf="estabelecimento">Atualizar</button>
+          <button class="col-2" mat-raised-button color="warn" (click)="remover(estabelecimento.usuarioEstabelecimento._id)" *ngIf="estabelecimento && user.isNutri()">Apagar</button>
+      </div>
+  
+    </div>
+  </app-menu>

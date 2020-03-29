@@ -1,3 +1,10 @@
-.content{
-    height: 99vh;
+// .content{
+//     height: 99vh;
+// }
+
+mat-drawer-container {
+    padding: 15px;
+}
+mat-drawer-content {
+    overflow: hidden;
 }

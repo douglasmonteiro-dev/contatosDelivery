@@ -1,0 +1,86 @@
+<app-menu>
+  <div class="main">
+      <mat-form-field *ngIf="user.isNutri()" class="col-12 mt-5 mb-3">
+          <input matInput placeholder="Cliente" [(ngModel)]="busca" [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let clienteOption of clientes" [value]="clienteOption.name" (click)="selecionaCliente(clienteOption)">
+              {{clienteOption.name}}
+            </mat-option>
+          </mat-autocomplete>
+      </mat-form-field>
+ 
+    
+    <mat-tab-group class="width100" *ngIf="cliente || user.isNutri()">
+        <mat-tab label="Dados Pessoais">
+            <form class="container mt-4">
+                <mat-form-field *ngIf="true" class="col-12">
+                  <input matInput placeholder="Nome" [(ngModel)]="cliente.usuarioCliente.name" name="name">
+                </mat-form-field>
+              
+                <mat-form-field *ngIf="true" class="col-12">
+                  <input matInput placeholder="E-mail" type="email" [(ngModel)]="cliente.usuarioCliente.email" name="email">
+                </mat-form-field>
+              
+                <mat-form-field *ngIf="true" class="col-12">
+                  <input matInput placeholder="CPF" [(ngModel)]="cliente.usuarioCliente.cpf" name="cpf">
+                </mat-form-field>
+            
+              
+                <mat-form-field *ngIf="true" class="col-6">
+                  <input matInput type="tel" placeholder="Telefone Residencial" [(ngModel)]="cliente.dadosCliente.telefone" name="telefone"> 
+                </mat-form-field>
+              
+                <mat-form-field *ngIf="true" class="col-6">
+                  <input matInput type="tel" placeholder="Telefone Celular" [(ngModel)]="cliente.dadosCliente.celular" name="celular">
+                </mat-form-field>
+              
+              
+              </form>
+        </mat-tab>
+        <mat-tab label="Endereço">
+            <form class="container mt-4">
+                <mat-form-field *ngIf="true" class="col-10">
+                  <input matInput placeholder="Endereço" [(ngModel)]="cliente.dadosCliente.endereco" name="endereco">
+                </mat-form-field>
+                <button class="col-2" mat-raised-button color="primary" (click)="pesquisarEndereco()">Pequisar</button>
+              
+              </form>
+              <agm-map [latitude]="lat" [zoom]="zoom" [longitude]="lng">
+                <agm-marker  [latitude]="lat" [longitude]="lng"></agm-marker>
+              </agm-map>
+          
+        </mat-tab>
+        <mat-tab label="Dados Financeiros">
+            <form class="container mt-4">
+                <mat-form-field *ngIf="true" class="width100">
+                  <input matInput placeholder="Nome impresso no Cartão" [(ngModel)]="cliente.dadosCliente.nomeCartao" name="nomeCartao">
+                </mat-form-field>
+              
+                <mat-form-field *ngIf="true" class="width100">
+                  <input matInput placeholder="Numero do Cartão"  [(ngModel)]="cliente.dadosCliente.numeroCartao" name="numeroCartao">
+                </mat-form-field>
+              
+                <mat-form-field *ngIf="true" class="width100">
+                  <input matInput placeholder="Mes Vencimento" [(ngModel)]="cliente.dadosCliente.mesCartao" name="mesCartao">
+                </mat-form-field>
+                <mat-form-field *ngIf="true" class="width100">
+                  <input matInput placeholder="Ano Vencimento" [(ngModel)]="cliente.dadosCliente.anoCartao" name="anoCartao">
+                </mat-form-field>
+                <mat-form-field *ngIf="true" class="width100">
+                  <input matInput placeholder="CVV" [(ngModel)]="cliente.dadosCliente.cvvCartao" name="cvvCartao">
+                </mat-form-field>
+              
+              
+              
+              </form>
+        </mat-tab>
+        
+    </mat-tab-group>
+
+    <div class="d-flex justify-content-center">
+        <button class="col-2 mr-5" mat-raised-button color="primary" (click)="atualizar()" *ngIf="cliente">Atualizar</button>
+        <button class="col-2" mat-raised-button color="warn" (click)="remover(cliente.usuarioCliente._id)" *ngIf="cliente && user.isNutri()">Apagar</button>
+    </div>
+
+  </div>
+</app-menu>

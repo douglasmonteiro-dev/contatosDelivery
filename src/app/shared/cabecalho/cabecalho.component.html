@@ -1,11 +1,19 @@
 <header>
     <mat-toolbar>
         <mat-toolbar-row>
+            <ng-content></ng-content>
             <a class="linkTitulo" [routerLink]="['']">
                 <h1>CONTATOS DELIVERY</h1>
               </a>
-            <span class="spacer"></span>
-            <ng-content></ng-content>
+            <button mat-icon-button [matMenuTriggerFor]="appMenu">
+                <mat-menu #appMenu="matMenu">
+                  <button mat-menu-item class="mat-menu-item" [routerLink]="['/login']" *ngIf="!user.isAutenticate()"><mat-icon aria-label="salvar icon" color="green">lock_open</mat-icon> Login</button>
+                  <button mat-menu-item class="mat-menu-item" [routerLink]="['/register']" *ngIf="!user.isAutenticate()"><mat-icon aria-label="salvar icon" color="green">how_to_reg</mat-icon> Registrar</button>
+                  <button mat-menu-item class="mat-menu-item" *ngIf="user.isAutenticate()" (click)="user.logoff()"><mat-icon aria-label="salvar icon" color="green">lock_open</mat-icon> Logoff</button>
+                  <button mat-menu-item class="mat-menu-item" [routerLink]="['/about']"><mat-icon aria-label="sair icon" color="green">help</mat-icon> Ajuda</button>
+                </mat-menu>
+                <mat-icon aria-label="Example icon-button with a heart icon">more_vert</mat-icon>
+              </button>
             <!-- <form class="form-inline">
                 <button mat-icon-button aria-label="Clique para Pesquisar" (click)="toggleSearch()" *ngIf="!showSearchInput">
                     <mat-icon class="icon" aria-hidden="false" aria-label="Pesquisar">search</mat-icon>

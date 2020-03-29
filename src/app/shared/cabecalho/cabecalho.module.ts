@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { CabecalhoComponent } from './cabecalho.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon'
+import {MatMenuModule} from '@angular/material/menu'
+import {MatButtonModule} from '@angular/material/button'
 import { AppRoutingModule } from 'src/app/app-routing.module';
 
 
@@ -14,6 +16,8 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
     CommonModule,
     MatToolbarModule,
     MatIconModule,
+    MatMenuModule,
+    MatButtonModule,
     AppRoutingModule,
   ],
   exports: [CabecalhoComponent]
